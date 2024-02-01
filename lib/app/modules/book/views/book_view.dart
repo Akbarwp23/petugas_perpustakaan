@@ -16,7 +16,7 @@ class BookView extends GetView<BookController> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: ()=>Get.toNamed(Routes.ADD_BOOK),child: Icon(Icons.add),
+        onPressed: () => Get.toNamed(Routes.ADD_BOOK),child: Icon(Icons.add),
       ),
       body: controller.obx((state) => ListView.separated(
           itemCount: state!.length,
