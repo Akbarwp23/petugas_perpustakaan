@@ -14,13 +14,68 @@ class HomeView extends GetView<HomeController> {
         title: const Text('HomeView'),
         centerTitle: true,
       ),
-      body: Center(
-          child:Column(
+      body: Container(
+        color: Color(0xFF316D80), // Set background color to #316D80
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(onPressed: ()=>Get.toNamed(Routes.BOOK), child: Text("Buku")),
-              ElevatedButton(onPressed: ()=>Get.toNamed(Routes.PEMINJAMAN), child: Text("Peminjaman")),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildButtonWithImageAndText(
+                    onPressed: () => Get.toNamed(Routes.BOOK),
+                    imageAsset: 'assets/buku1.png',
+                    buttonText: 'Buku',
+                  ),
+                  _buildButtonWithImageAndText(
+                    onPressed: () => Get.toNamed(Routes.PEMINJAMAN),
+                    imageAsset: 'assets/buku3.png',
+                    buttonText: 'Peminjaman',
+                  ),
+                ],
+              ),
             ],
-          )
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildButtonWithImageAndText({
+    required VoidCallback onPressed,
+    required String imageAsset,
+    required String buttonText,
+  }) {
+    return GestureDetector(
+      onTap: onPressed,
+      child: Column(
+        children: [
+          Container(
+            width: 120,
+            height: 120,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Center(
+              child: Image.asset(
+                imageAsset,
+                width: 80,
+                height: 80,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+          SizedBox(height: 8),
+          Text(
+            buttonText,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
     );
   }
